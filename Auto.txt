@@ -1,0 +1,4 @@
+Vert Auto1.txt +123
+Hori Auto0.txt -234
+Vert Auto1.txt -894
+Hori Auto0.txt +976
