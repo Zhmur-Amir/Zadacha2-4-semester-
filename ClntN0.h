@@ -1,4 +1,3 @@
-#pragma once
 #include "ClntN.h"
 
 
@@ -6,17 +5,18 @@
 class ClntN0 : public ClntN
 {
 protected:
-    const char* FileName;
+      string FileName;
 public:
     ClntN0(){SetZero();}
     ~ClntN0(){Clean();}
+    void SetZero(){arr=NULL; s=NULL; n=0; FileName.empty();}
     ClntN0 &operator=(const ClntN&b){if(this!=&b){Clean(); CopyOnly(b);} return *this;}
-    void SetZero(){arr=NULL; s=NULL; n=0; FileName=NULL;}
-    ClntN0(const bool r,const int m, const int* brr, const char* filename);
+    ClntN0(const bool r,const int m, const vector<int> brr, const string filename);
+    ClntN0(const bool r,const int m, const vector<int> brr);
     void CopyOnly(const ClntN0 &b);
     void CopyOnly(const ClntN &b);
-    friend ClntN0 operator+(const ClntN&a, const ClntN&b);
-    friend ClntN0 operator-(const ClntN&a, const ClntN&b);
+    friend ClntN0 operator+(const ClntN&a,const ClntN&b);
+    friend ClntN0 operator-(const ClntN&a,const ClntN&b);
     int output() override
     {
         ofstream file(FileName, ios::app);
@@ -41,11 +41,4 @@ public:
         file.close();
         return 0;
     }
-
 };
-
-ClntN0 operator+(const ClntN&a, const ClntN&b);
-ClntN0 operator-(const ClntN&a, const ClntN&b);
-
-
-

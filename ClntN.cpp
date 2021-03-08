@@ -41,6 +41,7 @@ void ClntN :: print()
 }
 
 
+
 void ClntN :: CopyOnly(const bool r,const int m, const int* brr)
 {
     n=m;
@@ -68,6 +69,7 @@ void ClntN :: CopyOnly(const bool r,const int m, const int* brr)
       else throw 2;
       }
 }
+
 
 
 

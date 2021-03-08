@@ -5,20 +5,34 @@ class CFactory
 {
 
 public:
-    ClntN* Create0(bool s, int n, int *arr, const char* FileName)
+    virtual ClntN* Create(bool s, int n, const vector<int> arr , const string FileName)=0;
+
+};
+
+class CFactory0 : public CFactory
+{
+public:
+    ClntN* Create(bool s, int n, const vector<int> arr , const string FileName)
     {
         ClntN0*v=new ClntN0(s,n,arr,FileName);
         return   v;
     }
-    ClntN* Create1(bool s, int n, int *arr, const char* FileName)
+
+};
+
+class CFactory1 : public CFactory
+{
+public:
+    ClntN* Create(bool s, int n, const vector<int> arr , const string FileName)
     {
-        ClntN1*v= new ClntN1(s,n,arr,FileName);
-        return  v;
+        ClntN1*v=new ClntN1(s,n,arr,FileName);
+        return   v;
     }
+
 };
 
 void Autotest(void);
 int Auto(void);
 ostream &operator<<(ostream &cout,  ClntN &s);
-ClntN* CCreate(string str,CFactory stln, int r);
-int PyatiletkyV4Goda(const char* FileName);
+ClntN* CCreate(string str, int r);
+int PyatiletkyV4Goda(string FileName);

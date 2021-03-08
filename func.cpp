@@ -1,11 +1,9 @@
-#include "ClntN.h"
-#include "ClntN1.h"
-#include "ClntN0.h"
 #include "wh.h"
+
 
 ostream &operator<<(ostream &cout,  ClntN &s){s.print(); return cout;}
 
-int PyatiletkyV4Goda(const char* FileName)
+int PyatiletkyV4Goda(const string FileName)
 {
         string line;
         int j=0;
@@ -38,44 +36,41 @@ int PyatiletkyV4Goda(const char* FileName)
            u++;
         }
         file2.close();
-
-
-        ClntN **arr=new ClntN*[j];
-        CFactory stln;
-        for (int i=0, r=1; i<j; i++)
+        vector<ClntN*> arr;
+        arr.resize(j);
+        int r=1, i=0;
+        for(vector<ClntN*>::iterator it=arr.begin(); it!=arr.end(); ++it)
         {
-            arr[i]=CCreate(str[i], stln,r);
+            *it=CCreate(str[i],r);
             r++;
+            i++;
         }
-
-        for(int i=0;i<j;i++)
+        for(vector<ClntN*>::iterator it=arr.begin(); it!=arr.end(); ++it)
         {
-            arr[i]->output();
+            (*it)->output();
         }
-        delete[] arr;
         delete[] str;
         str=NULL;
-        arr=NULL;
         return 0;
 
 }
 
-ClntN* CCreate(string str,CFactory stln, int r)
+ClntN* CCreate(string str, int r)
 {
   bool b, znak;
-  if(str[0]=='1')
+  if(str[0]=='V' && str[1]=='e'&& str[2]=='r'&& str[3]=='t' )
   {
       b=true;
   }
   else
   {
-     if(str[0]=='0')
+     if(str[0]=='H'&& str[1]=='o'&&str[2]=='r'&& str[3]=='i')
      {
          b=false;
      }
      else
      {
-         if(str[0]!='1' || str[1]!=' ' ||str[2]==' ' )
+         if(str[4]!=' ' || str[5]==' ' )
       {
           cout<<"Input Syntax Error!"<<endl;
            exit (-4);
@@ -88,23 +83,21 @@ ClntN* CCreate(string str,CFactory stln, int r)
      }
 
   }
-   int j=2;
+   int j=5;
    while(str[j]!=' ')
    {
       j++;
    }
+   string filename;
+   filename.resize(j-5);
 
-   char* filename=new char[j-2];
-   for(int i=0;i<j-2;i++)
-   {
-       filename[i]=str[i+2];
-   }
+   filename=str.substr(5,j-5);
    if(str[j]!=' '||str[j+1]==' ')
       {
           cout<<"Input Syntax Error!2"<<endl;
            exit (-5);
       }
-      filename[j-2]='\0';
+    filename[j-5]='\0';
     if(str[j+1]=='+')
     {
         znak=true;
@@ -122,42 +115,52 @@ ClntN* CCreate(string str,CFactory stln, int r)
         }
 
     }
-    if(znak==true)
+    string vid, zn;
+    if(b==true)
         {
-            cout<<r<<") "<<b<<" "<<filename<<" + ";
+            vid="Vert";
         }
         else
         {
-            cout<<r<<") "<<b<<" "<<filename<<" - ";
+           vid="Hori" ;
         }
-
-    int* num=new int[str.size()-j-2];
-    for(int i=0; i<str.size()-j-2;i++)
-    {
-        num[i]=static_cast<char>(str[i+j+2])-48;
-        cout<<num[i];
-    }
+    if(znak==true)
+        {
+            zn="+";
+        }
+        else
+        {
+           zn="-" ;
+        }
+    cout<<r<<") "<<vid<<" "<<filename<<" "<<zn;
+    vector<int> num;
+    num.resize(str.size()-j-2);
+    int i=0;
+for(vector<int>::iterator it=num.begin(); it!=num.end(); ++it)
+{
+    *it=static_cast<char>(str[i+j+2])-48;
+    i++;
+    cout<<*it;
+}
     cout<<endl;
+    map<string, CFactory*>F;
+    F["f0"]=new CFactory0();
+    F["f1"]=new CFactory1();
     if (b==false)
     {
         ClntN* d;
-        d=stln.Create0(znak, str.size()-j-2,num, filename);
-        delete[] num;
+        d=F["f0"]->Create(znak, str.size()-j-2,num, filename);
         return d;
     }
     else
     {
         ClntN* g;
-        g=stln.Create1(znak,str.size()-j-2 ,num, filename);
-        delete[] num;
+        g=F["f1"]->Create(znak,str.size()-j-2 ,num, filename);
         return g;
     }
 
 
 }
-
-
-
 
 
 

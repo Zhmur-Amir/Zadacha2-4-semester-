@@ -1,33 +1,13 @@
-#include "ClntN.h"
-#include "ClntN1.h"
-#include "ClntN0.h"
 #include "wh.h"
 
 void Autotest(void)
 {
      cout<<"Starting Autotest 1:"<<endl;
-     int*m=new int[3];
-     m[0]=9;
-     m[1]=0;
-     m[2]=0;
-     int*k=new int[3];
-     k[0]=0;
-     k[1]=0;
-     k[2]=1;
-     ClntN0 a(true,3,m,"Data.txt"),b(false,3,k,"Data.txt"),d,c,u(true,3,m,"Data.txt"),h(false,3,k,"Data.txt");
+     vector<int> m={9,0,0};
+     vector<int> k={0,0,1};
+     ClntN0 a(true,3,m),b(false,3,k),d,c,u(true,3,m),h(false,3,k);
      c=a+b;
      d=u-h;
-     /*cout<<"a="<<a<<", b="<<b<<", u="<<u<<", h="<<h<<endl;
-     ClntN1 s;
-     c=a+b;
-     cout<<"c="<<c<<endl;
-     d=u-h;
-     cout<<"d="<<d<<endl;
-     s=c+d;
-     cout<<"s="<<s<<endl;
-     a=s+s;
-     cout<<"a="<<a<<endl;
-*/
      if (c.sign()==true && c[0]==8 && c[1]==9 && c[2]==9 && d[0]==9 && d[1]==0 && d[2]==1 && d.sign()==true )
      {
          cout<<"Autotest passed! respect+"<<endl;
@@ -38,10 +18,6 @@ void Autotest(void)
      }
      cout<<endl<<"============================="<<endl;
 
-    delete[]  m;
-    m=NULL;
-    delete[]  k;
-    k=NULL;
 
 }
 

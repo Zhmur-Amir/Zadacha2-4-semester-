@@ -3,9 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <vector>
+#include <map>
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
+
 
 
 class ClntN
@@ -23,12 +27,18 @@ public:
     void CopyOnly(const bool r,const int m, const int* brr);
     ClntN(const bool r,const int m, const int* brr){CopyOnly(r,m,brr);}
     int &operator[](int i)const{if(i<0 || i>=n) throw 3; return arr[i];}
-    bool sign()const{return s;}
+    bool sign()const {return s;}
+    int len()const {return n;}
     void print();
     virtual int output()=0;
-    int len()const{return n;}
 
 };
+
+
+
+
+
+
 
 
 
