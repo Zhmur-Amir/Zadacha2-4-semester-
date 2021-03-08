@@ -1,5 +1,7 @@
 #include "ClntN.h"
-
+#include "ClntN1.h"
+#include "ClntN0.h"
+#include "wh.h"
 
 void Autotest(void)
 {
@@ -12,9 +14,20 @@ void Autotest(void)
      k[0]=0;
      k[1]=0;
      k[2]=1;
-     ClntN a(true,3,m),b(false,3,k),d,c,u(true,3,m),h(false,3,k);
+     ClntN0 a(true,3,m,"Data.txt"),b(false,3,k,"Data.txt"),d,c,u(true,3,m,"Data.txt"),h(false,3,k,"Data.txt");
      c=a+b;
      d=u-h;
+     /*cout<<"a="<<a<<", b="<<b<<", u="<<u<<", h="<<h<<endl;
+     ClntN1 s;
+     c=a+b;
+     cout<<"c="<<c<<endl;
+     d=u-h;
+     cout<<"d="<<d<<endl;
+     s=c+d;
+     cout<<"s="<<s<<endl;
+     a=s+s;
+     cout<<"a="<<a<<endl;
+*/
      if (c.sign()==true && c[0]==8 && c[1]==9 && c[2]==9 && d[0]==9 && d[1]==0 && d[2]==1 && d.sign()==true )
      {
          cout<<"Autotest passed! respect+"<<endl;
@@ -93,9 +106,7 @@ int Auto(void)
 
 
 
-     if (str[0]=="+" && str[1]=="1" && str[2]=="2" &&str[3]=="3"&&
-         str[5]=="-" && str[6]=="8" && str[7]=="9" &&str[8]=="4"&&
-         line1=="-234 +976 " )
+     if (str[0]=="+123" && str[1]=="-894" && line1=="-234 +976 " )
      {
          cout<<endl<<"Autotest passed! respect+"<<endl;
      }
