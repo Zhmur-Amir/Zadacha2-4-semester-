@@ -37,7 +37,7 @@ public:
         {
             file<<arr[i];
         }
-        file<<" ";
+        file<<endl;
         file.close();
         return 0;
     }

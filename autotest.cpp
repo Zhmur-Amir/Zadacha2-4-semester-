@@ -21,6 +21,7 @@ void Autotest(void)
 
 }
 
+
 int Auto(void)
 {
     cout<<endl<<"Starting Autotest 2:"<<endl<<endl;
@@ -33,7 +34,7 @@ int Auto(void)
     out1.close();
     out2.close();
     PyatiletkyV4Goda("Auto.txt");
-    string line;
+    string line,line4;
         int j=0;
         ifstream file("Auto1.txt"),file2("Auto1.txt");
         if(!file)
@@ -68,21 +69,44 @@ int Auto(void)
 
 
 
-        string line1;
-        ifstream file3("Auto0.txt");
+
+        ifstream file3("Auto0.txt"),file4("Auto0.txt");
+        if(!file4)
+        {
+            cout<<"Error! Cannot open file..."<<endl;
+            return -1;
+        }
+        j=0;
+        while (getline(file4,line4))
+        {
+            j++;
+        }
+        if(j==0)
+        {
+            cout<<"Input is empty..."<<endl;
+            return 2;
+        }
+        file4.close();
         if(!file3)
         {
             cout<<"Error! Cannot open file..."<<endl;
             return -1;
         }
-        getline(file3,line1);
+        u=0;
+        string *line1=new string[j];
+        while (getline(file3,line))
+        {
+           line1[u]=line;
+           u++;
+        }
         file3.close();
 
 
 
 
 
-     if (str[0]=="+123" && str[1]=="-894" && line1=="-234 +976 " )
+     if (str[0]=="+" && str[1]=="1" && str[2]=="2" &&str[3]=="3"&&
+         str[5]=="-" && str[6]=="8" && str[7]=="9" &&str[8]=="4" && line1[0]=="-234" && line1[1]=="+976" )
      {
          cout<<endl<<"Autotest passed! respect+"<<endl;
      }
@@ -93,5 +117,4 @@ int Auto(void)
      cout<<endl<<"============================="<<endl;
 return 0;
 }
-
 
