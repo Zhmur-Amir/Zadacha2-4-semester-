@@ -31,17 +31,17 @@ public:
         }
         if(s==true)
         {
-            file<<"+";
+            file<<"+"<<endl;
         }
         else
         {
-            file<<"-";
+            file<<"-"<<endl;
         }
         for(int i=0; i<n; i++)
         {
-            file<<arr[i];
+            file<<arr[i]<<endl;
         }
-        file<<endl;
+        file<<"======="<<endl;
         file.close();
         return 0;
     }
