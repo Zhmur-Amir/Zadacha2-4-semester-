@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sstream>
 #include <string.h>
 #include <vector>
 #include <map>

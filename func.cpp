@@ -55,75 +55,38 @@ int PyatiletkyV4Goda(const string FileName)
 
 }
 
+
+
 ClntN* CCreate(string str, int r)
 {
-  bool b, znak;
-  if(str[0]=='V' && str[1]=='e'&& str[2]=='r'&& str[3]=='t' )
-  {
-      b=true;
-  }
-  else
-  {
-     if(str[0]=='H'&& str[1]=='o'&&str[2]=='r'&& str[3]=='i')
-     {
-         b=false;
-     }
-     else
-     {
-         if(str[4]!=' ' || str[5]==' ' )
-      {
-          cout<<"Input Syntax Error!"<<endl;
-           exit (-4);
-      }
-      else
-      {
-         cout<<"Input Syntax Error!"<<endl;
-           exit (-4);
-      }
-     }
-
-  }
-   int j=5;
-   while(str[j]!=' ')
-   {
-      j++;
-   }
-   string filename;
-   filename.resize(j-5);
-
-   filename=str.substr(5,j-5);
-   if(str[j]!=' '||str[j+1]==' ')
-      {
-          cout<<"Input Syntax Error!2"<<endl;
-           exit (-5);
-      }
-    filename[j-5]='\0';
-    if(str[j+1]=='+')
+    bool znak,b;
+    string vid, zn;
+    map<string, CFactory*>F;
+    F["Hori"]=new CFactory0();
+    F["Vert"]=new CFactory1();
+    stringstream Stream;
+    Stream<<str;
+    string Type, filename, number;
+    Stream>>Type;
+    Stream>>filename;
+    Stream>>number;
+    if(number[0]=='+')
     {
         znak=true;
     }
     else
     {
-        if(str[j+1]=='-')
+        if(number[0]=='-')
         {
             znak=false;
         }
         else
         {
-           cout<<"Input Syntax Error3!"<<endl;
+           cout<<"Input Syntax Error!"<<endl;
            exit (-6);
         }
 
     }
-    string vid, zn;
-    if(b==true)
-        {
-            vid="Vert";
-        }
-        else
-        {
-           vid="Hori" ;
-        }
     if(znak==true)
         {
             zn="+";
@@ -132,35 +95,55 @@ ClntN* CCreate(string str, int r)
         {
            zn="-" ;
         }
+     if(b==true)
+        {
+            vid="Vert";
+        }
+        else
+        {
+           vid="Hori" ;
+        }
     cout<<r<<") "<<vid<<" "<<filename<<" "<<zn;
+
     vector<int> num;
-    num.resize(str.size()-j-2);
+    num.resize(number.size()-1);
     int i=0;
 for(vector<int>::iterator it=num.begin(); it!=num.end(); ++it)
 {
-    *it=static_cast<char>(str[i+j+2])-48;
+    *it=static_cast<char>(number[i+1])-48;
     i++;
     cout<<*it;
 }
     cout<<endl;
-    map<string, CFactory*>F;
-    F["f0"]=new CFactory0();
-    F["f1"]=new CFactory1();
-    if (b==false)
+
+
+
+    auto curfabric=F.find(Type);
+    if (curfabric==F.end())
     {
-        ClntN* d;
-        d=F["f0"]->Create(znak, str.size()-j-2,num, filename);
-        return d;
+        cout<<"Input Syntax Error!"<<endl;
+        exit (-4);
     }
     else
     {
-        ClntN* g;
-        g=F["f1"]->Create(znak,str.size()-j-2 ,num, filename);
-        return g;
+        ClntN* product;
+        product=curfabric->second->Create(znak, number.size()-1 ,num, filename);
+        return product;
     }
 
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

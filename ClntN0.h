@@ -9,6 +9,7 @@ protected:
 public:
     ClntN0(){SetZero();}
     ~ClntN0(){Clean();}
+     ClntN0(const ClntN0 &b){SetZero(); CopyOnly(b);}
     void SetZero(){arr=NULL; s=NULL; n=0; FileName.empty();}
     ClntN0 &operator=(const ClntN&b){if(this!=&b){Clean(); CopyOnly(b);} return *this;}
     ClntN0(const bool r,const int m, const vector<int> brr, const string filename);
@@ -37,7 +38,7 @@ public:
         {
             file<<arr[i];
         }
-        file<<" ";
+        file<<endl;
         file.close();
         return 0;
     }
