@@ -35,4 +35,4 @@ void Autotest(void);
 int Auto(void);
 ostream &operator<<(ostream &cout,  ClntN &s);
 ClntN* CCreate(string str, int r);
-int PyatiletkyV4Goda(string FileName);
+int PyatiletkyV4Goda(const string FileName);

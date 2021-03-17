@@ -13,6 +13,7 @@ protected:
 public:
      ClntN1(){SetZero();}
     ~ClntN1(){Clean();}
+     ClntN1(const ClntN0 &b){SetZero(); CopyOnly(b);}
      void SetZero(){arr=NULL; s=NULL; n=0; FileName.empty();}
      ClntN1 &operator=(const ClntN&b){if(this!=&b){Clean(); CopyOnly(b);} return *this;}
      ClntN1(const bool r,const int m, const vector<int> brr ,const string filename);
@@ -31,17 +32,17 @@ public:
         }
         if(s==true)
         {
-            file<<"+";
+            file<<"+"<<endl;
         }
         else
         {
-            file<<"-";
+            file<<"-"<<endl;
         }
         for(int i=0; i<n; i++)
         {
-            file<<arr[i];
+            file<<arr[i]<<endl;
         }
-        file<<endl;
+        file<<"======="<<endl;
         file.close();
         return 0;
     }
