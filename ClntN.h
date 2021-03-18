@@ -20,7 +20,7 @@ protected:
 public:
     ClntN(){SetZero();}
     ClntN(const ClntN &b){CopyOnly(b);}
-    ~ClntN(){Clean();}
+    virtual ~ClntN(){Clean();}
     ClntN &operator=(const ClntN&b){if(this!=&b){Clean(); CopyOnly(b);} return *this;}
     void Clean(){delete[] arr; SetZero();}
     virtual void SetZero(){arr=NULL; s=NULL; n=0;}
