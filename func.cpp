@@ -7,7 +7,8 @@ int PyatiletkyV4Goda(const string FileName)
 {
         string line;
         int j=0;
-        ifstream file(FileName),file2(FileName);
+        vector<string> temp;
+        ifstream file(FileName);
         if(!file)
         {
             cout<<"Error! Cannot open file..."<<endl;
@@ -16,6 +17,7 @@ int PyatiletkyV4Goda(const string FileName)
         while (getline(file,line))
         {
             j++;
+            temp.push_back(line);
         }
         if(j==0)
         {
@@ -23,19 +25,11 @@ int PyatiletkyV4Goda(const string FileName)
             return 2;
         }
         file.close();
-        if(!file2)
-        {
-            cout<<"Error! Cannot open file..."<<endl;
-            return -1;
-        }
-        int u=0;
         string *str=new string[j];
-        while (getline(file2,line))
+        for (int u=0; u<j; u++)
         {
-           str[u]=line;
-           u++;
+           str[u]=temp[u];
         }
-        file2.close();
         vector<ClntN*> arr;
         arr.resize(j);
         int r=1, i=0;
@@ -48,9 +42,12 @@ int PyatiletkyV4Goda(const string FileName)
         for(vector<ClntN*>::iterator it=arr.begin(); it!=arr.end(); ++it)
         {
             (*it)->output();
+            delete (*it);
+            (*it)=NULL;
         }
         delete[] str;
         str=NULL;
+
         return 0;
 
 }
@@ -95,7 +92,7 @@ ClntN* CCreate(string str, int r)
         {
            zn="-" ;
         }
-     
+
     cout<<r<<") "<<Type<<" "<<filename<<" "<<zn;
 
     vector<int> num;
