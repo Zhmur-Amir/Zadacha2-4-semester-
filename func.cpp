@@ -59,8 +59,8 @@ int PyatiletkyV4Goda(const string FileName)
 
 ClntN* CCreate(string str, int r)
 {
-    bool znak,b;
-    string vid, zn;
+    bool znak;
+    string zn;
     map<string, CFactory*>F;
     F["Hori"]=new CFactory0();
     F["Vert"]=new CFactory1();
@@ -95,15 +95,8 @@ ClntN* CCreate(string str, int r)
         {
            zn="-" ;
         }
-     if(b==true)
-        {
-            vid="Vert";
-        }
-        else
-        {
-           vid="Hori" ;
-        }
-    cout<<r<<") "<<vid<<" "<<filename<<" "<<zn;
+     
+    cout<<r<<") "<<Type<<" "<<filename<<" "<<zn;
 
     vector<int> num;
     num.resize(number.size()-1);
